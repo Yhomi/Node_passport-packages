@@ -1,0 +1,22 @@
+{
+  "name": "login_app",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    "start":"nodemon app.js"
+  },
+  "author": "Yhomi",
+  "license": "ISC",
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "dotenv": "^8.2.0",
+    "express": "^4.17.1",
+    "express-handlebars": "^5.0.0",
+    "express-session": "^1.17.1",
+    "mongoose": "^5.9.22",
+    "passport": "^0.4.1",
+    "passport-google-oauth20": "^2.0.0",
+    "passport-local": "^1.0.0"
+  }
+}

@@ -3,12 +3,20 @@ const passport = require('passport');
 const dotenv = require('dotenv');
 const exphbs = require('express-handlebars');
 const connectDb = require('./config/database');
+const path = require('path');
 
 dotenv.config();
 const app = express();
 
 // database connect
 connectDb()
+
+// set static files
+app.use(express.static(path.join(__dirname,'public')));
+
+//bodyParser
+app.use(express.urlencoded({extended:false}));
+app.use(express.json());
 
 // set view engine
 app.engine('.hbs',exphbs({defaultLayout:'main',extname:'.hbs'}));

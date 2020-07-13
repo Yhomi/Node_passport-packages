@@ -1,0 +1,66 @@
+*{
+  padding: 0;
+}
+.container{
+  width: 90%
+  margin: 30px auto;
+
+}
+.register{
+  width: 70%;
+
+  margin:20px auto;
+
+}
+.register h1{
+  width: 50%;
+  margin: auto;
+}
+
+.form{
+  width: 70%;
+  margin: 10px auto;
+}
+
+.form-control{
+  padding: 20px;
+  display: block;
+}
+.form-control label{
+  font-size: 20px;
+  /* color: grey; */
+  padding: 5px;
+}
+
+.form-control input{
+  width: 400px;
+  height: 40px;
+  display: block;
+  margin-top: 10px;
+  box-sizing: border-box;
+  border-radius: 5px;
+}
+
+.btn{
+  width: 120px;
+  height: 40px;
+  cursor: pointer;
+  box-shadow: 0 2px 3px #ccc;
+  background-color: orange;
+  font-size: 20px;
+  font-family: sans-serif;
+  color: yellow;
+  border-radius: 10px;
+}
+.google{
+  width: 200px;
+  height: 40px;
+  margin-left: 30px;
+  background: skyblue;
+  border: 1px solid #eee;
+  font-size: 20px;
+  padding: 10px;
+  text-decoration: none;
+  color: #333;
+  border-radius: 10px;
+}

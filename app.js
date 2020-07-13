@@ -4,6 +4,8 @@ const dotenv = require('dotenv');
 const exphbs = require('express-handlebars');
 const connectDb = require('./config/database');
 const path = require('path');
+const session = require('express-session');
+const flash = require('connect-flash');
 
 dotenv.config();
 const app = express();
@@ -21,6 +23,21 @@ app.use(express.json());
 // set view engine
 app.engine('.hbs',exphbs({defaultLayout:'main',extname:'.hbs'}));
 app.set('view engine','.hbs');
+
+// session
+app.use(session({
+    secret: 'anything',
+    resave: true,
+    saveUninitialized: true
+}));
+
+app.use(flash())
+
+//global variables
+app.use((req,res,next)=>{
+  res.locals.error = req.flash('error')
+  next()
+})
 
 app.use('/auth',require('./routes/auth'));
 

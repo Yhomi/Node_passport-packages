@@ -22,17 +22,17 @@
   margin: 10px auto;
 }
 
-.form-control{
+.form-input{
   padding: 20px;
   display: block;
 }
-.form-control label{
+.form-input label{
   font-size: 20px;
   /* color: grey; */
   padding: 5px;
 }
 
-.form-control input{
+.form-input input{
   width: 400px;
   height: 40px;
   display: block;

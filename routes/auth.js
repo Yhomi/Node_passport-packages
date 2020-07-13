@@ -1,5 +1,6 @@
 const express = require('express');
 const bcrypt = require('bcryptjs');
+const passport = require('passport');
 
 const router = express.Router();
 
@@ -60,6 +61,21 @@ router.post('/register', async (req,res)=>{
     }
   }
 
+});
+
+// login
+router.post('/login',(req,res,next)=>{
+  passport.authenticate('local',{
+    successRedirect:'/',
+    failureRedirect:'/auth/login',
+    failureFlash:true
+  })(req,res,next)
+});
+
+//logout
+router.get('/logout',(req,res)=>{
+  req.logout()
+  res.redirect('/auth/login')
 })
 
 module.exports = router;

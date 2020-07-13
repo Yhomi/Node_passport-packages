@@ -1,14 +1,20 @@
 const express = require('express');
 const passport = require('passport');
 const dotenv = require('dotenv');
+const mongoose = require('mongoose');
 const exphbs = require('express-handlebars');
 const connectDb = require('./config/database');
 const path = require('path');
 const session = require('express-session');
 const flash = require('connect-flash');
+const MongoStore = require('connect-mongo')(session);
+const {ensureAuth} = require('./config/auth')
+
 
 dotenv.config();
 const app = express();
+
+require('./config/local')(passport);
 
 // database connect
 connectDb()
@@ -24,12 +30,18 @@ app.use(express.json());
 app.engine('.hbs',exphbs({defaultLayout:'main',extname:'.hbs'}));
 app.set('view engine','.hbs');
 
+
+
 // session
 app.use(session({
     secret: 'anything',
-    resave: true,
-    saveUninitialized: true
+    resave: false,
+    saveUninitialized: false,
+     store: new MongoStore({mongooseConnection:mongoose.connection})
 }));
+
+app.use(passport.initialize())
+app.use(passport.session())
 
 app.use(flash())
 
@@ -41,8 +53,9 @@ app.use((req,res,next)=>{
 
 app.use('/auth',require('./routes/auth'));
 
-app.get('/',(req,res)=>{
-  res.render('dashboard')
+app.get('/',ensureAuth,(req,res)=>{
+  const user = req.user.name
+  res.render('dashboard',{user})
 })
 
 const PORT = process.env.PORT || 7000

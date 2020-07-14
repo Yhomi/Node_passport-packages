@@ -78,4 +78,20 @@ router.get('/logout',(req,res)=>{
   res.redirect('/auth/login')
 })
 
+// login with google account
+
+router.get('/google',passport.authenticate('google',{scope:['profile','email']}));
+
+router.get('/google/callback',passport.authenticate('google',{failureRedirect:'/auth/login'}),(req,res)=>{
+  res.redirect('/')
+});
+
+// Login with Facebook
+
+router.get('/facebook',passport.authenticate('facebook',{scope:['email']}));
+
+router.get('/facebook/callback',passport.authenticate('facebook',{failureRedirect:'/auth/login'}),(req,res)=>{
+  res.redirect('/')
+})
+
 module.exports = router;

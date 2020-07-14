@@ -15,6 +15,8 @@ dotenv.config();
 const app = express();
 
 require('./config/local')(passport);
+require('./config/google')(passport);
+require('./config/fb')(passport);
 
 // database connect
 connectDb()
